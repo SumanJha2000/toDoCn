@@ -1,0 +1,60 @@
+<%- include("./partials/header.ejs") %>
+
+    <div class="container mx-auto  mb-5 w-50">
+        <nav class="navbar navbar-light bg-light">
+            <h1 class="text-center">TODO APP</h1>
+        </nav>
+
+        <form action="/" method="POST">
+            <label>Description</label>
+            <input type="text" name="description" id="" placeholder="Enter your task..." class="w-100 form-control"
+                required />
+            <hr>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="dropdown mb-3 d-flex flex-column">
+                    <label for="dropdownMenu2">CATEGORY</label>
+                    <select class="btn btn-outline-info" name="category" required>
+                        <option name="category" value="Others">Others</option>
+                        <option name="category" value="Education">Education</option>
+                        <option name="category" value="Work">Work</option>
+                        <option name="category" value="Personal">Personal</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="date">DUE DATE</label>
+                    <input type="date" name="date" id="date" required class="form-control" />
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-center align-items-center">
+                <button type="submit" value=""
+                    class="font-weight-bold  btn btn-success btn-outline-success mr-2 px-3 py-2">+ Add
+                    Tasks</button>
+            </div>
+        </form>
+        <hr>
+        <h2>To Do List</h2>
+        <ul class="list-group">
+            <% todo.forEach(todos=>{%>
+                <li class="list-group-item d-flex flex-row justify-content-between w-100">
+                    <div>
+                        <span class="font-weight-bold
+                    mb-2">
+                            <%= todos.description %>
+                        </span>
+                        <div class="d-flex flex-row justify-content-around ">
+                            <span class="badge badge-warning"><i class="fa fa-calendar"></i>
+                                <%= todos.date!=null?todos.date.toLocaleDateString():"" %>
+                            </span>
+                            <span class="ml-2 badge badge-info"><i class="fa fa-tasks"></i>
+                                <%= todos.category %>
+                            </span>
+                        </div>
+                    </div>
+                    <a href="/:id" class="text-decoration-none fa fa-trash text-danger text-center h4"></a>
+                </li>
+                <% }) %>
+        </ul>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
