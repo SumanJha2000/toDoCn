@@ -2,6 +2,7 @@
 const Todo = require('../models/todo.js');
 
 const ctrl = {
+    //postData to mongodb
     postData: async (req, res) => {
         try {
             await Todo.create(req.body)
@@ -12,6 +13,7 @@ const ctrl = {
 
 
     },
+    //get all todos and their datas
     getData: async (req, res) => {
         try {
             const todo = await Todo.find();
@@ -22,6 +24,8 @@ const ctrl = {
 
 
     },
+
+    //deletedata on clickk on delete button
     deleteData: async (req, res) => {
         try {
             const id = req.params.id;
